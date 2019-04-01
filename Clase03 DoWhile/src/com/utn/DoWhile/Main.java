@@ -41,6 +41,8 @@ public class Main {
 			flag1 = 1;
 
 		} while (contrasenia != contraseniaIngresada);
+		
+		sc.close();
 
 	}
 

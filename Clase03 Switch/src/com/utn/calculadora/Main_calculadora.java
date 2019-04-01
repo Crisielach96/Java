@@ -6,9 +6,9 @@ public class Main_calculadora {
 
 	public static void main(String[] args) {
 
-		double num1 = 0, num2 = 0, resultado = 0;
 		int opcion = 0, flag = 0;
 		Scanner sc = new Scanner(System.in);
+		Calculador cal = new Calculador();
 
 		System.out.println("1-Suma");
 		System.out.println("2-Resta");
@@ -17,10 +17,7 @@ public class Main_calculadora {
 		System.out.println("5-Cambiar los numeros");
 		System.out.println("6-Salir");
 
-		System.out.println("Ingrese el primer numero: ");
-		num1 = sc.nextDouble();
-		System.out.println("Ingrese el segundo numero: ");
-		num2 = sc.nextDouble();
+		cal.pedirValores();
 
 		do {
 			System.out.println("Ingrese opcion: ");
@@ -28,26 +25,22 @@ public class Main_calculadora {
 
 			switch (opcion) {
 			case 1:
-				resultado = num1 + num2;
-				System.out.println("La suma es. " + resultado);
+				System.out.println("La suma es. " + cal.suma());
 				break;
 			case 2:
-				resultado = num1 - num2;
-				System.out.println("La resta es. " + resultado);
+				System.out.println("La resta es. " + cal.resta());
 				break;
 			case 3:
-				resultado = num1 * num2;
-				System.out.println("La multiplicacion es. " + resultado);
+				System.out.println("La multiplicacion es. " + cal.mulriplicacion());
 				break;
 			case 4:
-				resultado = num1 / num2;
-				System.out.println("La division es. " + resultado);
+				if(cal.division()!=0)
+				{
+					System.out.println("La division es. " + cal.division());
+				}
 				break;
 			case 5:
-				System.out.println("Ingrese el primer numero: ");
-				num1 = sc.nextDouble();
-				System.out.println("Ingrese el segundo numero: ");
-				num2 = sc.nextDouble();
+				cal.pedirValores();
 				break;
 			case 6:
 				flag = 1;
@@ -57,6 +50,7 @@ public class Main_calculadora {
 				System.out.println("Opcion incorrecta!");
 			}
 		} while (flag == 0);
+		sc.close();
 	}
 
 }
