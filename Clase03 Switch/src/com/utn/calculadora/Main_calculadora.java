@@ -51,6 +51,7 @@ public class Main_calculadora {
 			}
 		} while (flag == 0);
 		sc.close();
+		
 	}
 
 }
