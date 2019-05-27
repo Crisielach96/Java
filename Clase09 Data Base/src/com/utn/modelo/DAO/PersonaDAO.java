@@ -27,8 +27,6 @@ public class PersonaDAO {
 			estatuto.executeUpdate("INSERT INTO persona VALUES ('" + miPersona.getIdP() + "','" + miPersona.getNombreP()
 					+ "','" + miPersona.getEdadP() + "','" + miPersona.getProfesionP() + "','"
 					+ miPersona.getTelefonoP() + "')");
-			JOptionPane.showMessageDialog(null, "Se registro la persona", "INFORMACION",
-					JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Se registro la persona");
 			estatuto.close();
 		} catch (SQLException e) {
@@ -81,6 +79,29 @@ public class PersonaDAO {
 			estatuto.close();
 		} catch (SQLException e) {
 			System.out.println("No se pudo eliminar");
+		} finally {
+			conn.desconectar();
+		}
+	}
+
+	public void modificarPersona(PersonaVO miPersona) {
+		Conexion conn = new Conexion();
+
+		try {
+			String consulta = "UPDATE persona SET  id=?,nombre=?,edad=?,profesion=?,telefono=? WHERE id=?";
+			PreparedStatement estatuto = conn.getConecction().prepareStatement(consulta);
+
+			estatuto.setInt(1, miPersona.getIdP());
+			estatuto.setString(2, miPersona.getNombreP());
+			estatuto.setInt(3, miPersona.getEdadP());
+			estatuto.setString(4, miPersona.getProfesionP());
+			estatuto.setInt(5, miPersona.getTelefonoP());
+			estatuto.setInt(6, miPersona.getIdP());
+
+			estatuto.executeUpdate();
+			System.out.println("Se modifico correctamente los datos de la persona.");
+		} catch (SQLException e) {
+			System.out.println("No se pudo modificar los datos.");
 		} finally {
 			conn.desconectar();
 		}
